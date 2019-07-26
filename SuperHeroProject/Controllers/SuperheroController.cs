@@ -24,7 +24,8 @@ namespace SuperHeroProject.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+			Superhero superhero = context.Superheroes.Where(e => e.Id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // GET: Superhero/Create
@@ -82,17 +83,19 @@ namespace SuperHeroProject.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+			Superhero superhero = context.Superheroes.Where(e => e.Id == id).FirstOrDefault();
+            return View(superhero);
         }
 
         // POST: Superhero/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
-                // TODO: Add delete logic here
-
+				superhero = context.Superheroes.Where(e => e.Id == id).FirstOrDefault();
+				context.Superheroes.Remove(superhero);
+				context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
