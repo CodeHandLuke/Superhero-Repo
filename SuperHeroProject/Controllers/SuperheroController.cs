@@ -60,11 +60,11 @@ namespace SuperHeroProject.Controllers
 
         // POST: Superhero/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Superhero superhero)
+        public ActionResult Edit(Superhero superhero)
         {
             try
             {
-				Superhero foundSuperhero = context.Superheroes.Where(e => e.Id == id).FirstOrDefault();
+				Superhero foundSuperhero = context.Superheroes.Where(e => e.Id == superhero.Id).FirstOrDefault();
 				foundSuperhero.FirstName = superhero.FirstName;
 				foundSuperhero.LastName = superhero.LastName;
 				foundSuperhero.AlterEgo = superhero.AlterEgo;
